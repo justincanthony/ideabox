@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <!-- <meta charset="utf-8"> -->
+    <title></title>
+  </head>
+  <body>
+    <aside>
+     <div class="sidebar-title">
+       <h1>IdeaBox</h1>
+     </div>
+     <div class="sidebar-subtitle">
+       <h2>Filter Starred Ideas</h2>
+       <button class="show-starred-btn">Show Starred Ideas</button>
+     </div>
+     <div class="sidebar-filler"></div>
+     </aside>
+     <form>
+       <div class="title-box">
+         <label>Title</label>
+         <input type="text" class="form-title">
+       </div>
+       <div class="body-box">
+         <label>Body</label>
+         <input type="text" class="form-body">
+       </div>
+       <div class="btn-box">
+         <button class="save-btn">Save</button>
+       </div>
+       <div class="search-box">
+         <button class="search-btn"></button> <!-- Will be SVG clickable image -->
+         <input type="text" placeholder="Search...">
+       </div>
+     </form>
+     <section class="ideabox">
+       <article class="idea-card">
+         <div class="idea-card-header">
+           <img>
+           <img>
+           <!-- Button, how to add click event handler to img?
+    <input type="image" src="http://example.com/path/to/image.png" />
+    <button style="background: url(myimage.png)" ... />
+    -->
+         </div>
+         <div class="idea-card-body">
+           <h3>Idea Title</h3>
+           <p>Idea body. This is the body of the idea.<p>
+         </div>
+         <div class="idea-card-footer">
+           <input type="button" class="idea-card-comment">
+          <!-- <button style="background: url(myimage.png)" ... />  -->
+           <label>Comment</label>
+         </div>
+       </article>
+     </section>
+    <script type="text/javascript" src="main.js"></script>
+  </body>
+</html>
