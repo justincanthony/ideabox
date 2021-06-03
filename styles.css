@@ -71,6 +71,11 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+main {
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+}
 
 aside {
   background:#1F1F3D;
