@@ -12,17 +12,6 @@ main {
   flex-direction: column;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  background-color: #A9AAD2;
-  border: solid red 2px;
-  height: 310px;
-  width:700px;
-}
-
 h1 {
   background:#1F1F3D;
   color:#E9E9F3;
@@ -47,6 +36,17 @@ aside {
   align-items: flex-start;
   flex-direction: column;
   width: 125px;
+}
+
+.create-idea-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #A9AAD2;
+  border: solid red 2px;
+  height: 310px;
+  width:700px;
 }
 
 .ideabox {
@@ -97,6 +97,7 @@ aside {
   flex-direction: column;
   margin-left: 5%;
   margin-right: 3%;
+  overflow: scroll;
 }
 
 .idea-card-footer {
