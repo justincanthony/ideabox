@@ -1,5 +1,52 @@
-.hidden {
-  display: none;
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+}
+
+main {
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+h1 {
+  background:#1F1F3D;
+  color:#E9E9F3;
+  font-weight: bold;
+  font-size: 1em;
+  margin: 10px;
+}
+
+h2 {
+  background:#1F1F3D;
+  color:#BFBFDD;
+  font-family: Open sans-serif, bold;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: .5em;
+  margin: 10px;
+}
+
+aside {
+  background:#1F1F3D;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 125px;
+}
+
+.create-idea-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #A9AAD2;
+  border: solid red 2px;
+  height: 310px;
+  width:700px;
 }
 
 .ideabox {
@@ -9,7 +56,6 @@
   display: flex;
   justify-content: space-around;
   /* align-items: center; */
-
 }
 
 .idea-card {
@@ -64,21 +110,6 @@
   align-items: center;
 }
 
-body {
-/* display: flex; */
-  height: 100vh;
-  font-family: 'Open Sans', sans-serif;
-}
-
-
-aside {
-  background:#1F1F3D;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  width: 125px;
-}
-
 .sidebar-title {
   display: flex;
   align-items: flex-start;
@@ -86,14 +117,6 @@ aside {
   width: 125px;
   box-sizing: border-box;
   border-bottom: solid #353567 2px;
-}
-
-h1 {
-  background:#1F1F3D;
-  color:#E9E9F3;
-  font-weight: bold;
-  font-size: 1em;
-  margin: 10px;
 }
 
 .sidebar-subtitle {
@@ -104,16 +127,6 @@ h1 {
   border-bottom: solid #353567 2px;
   width: 125px;
   box-sizing: border-box;
-}
-
-h2 {
-  background:#1F1F3D;
-  color:#BFBFDD;
-  font-family: Open sans-serif, bold;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: .5em;
-  margin: 10px;
 }
 
 .sidebar-filler {
@@ -133,18 +146,6 @@ h2 {
   font-size: .5em;
   padding: 5px;
   border-radius: 1px;
-}
-
-
-.create-idea-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  background-color: #A9AAD2;
-  border: solid red 2px;
-  height: 310px;
-  width:700px;
 }
 
 .title-box {
@@ -205,4 +206,8 @@ h2 {
 .search-field {
   width: 80%;
   height: 70%;
+}
+
+.hidden {
+  display: none;
 }
