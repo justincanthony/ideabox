@@ -51,6 +51,7 @@
   flex-direction: column;
   margin-left: 5%;
   margin-right: 3%;
+  overflow: scroll;
 }
 
 .idea-card-footer {
