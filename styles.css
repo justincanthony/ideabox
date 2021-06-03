@@ -64,7 +64,9 @@
 }
 
 body {
-/* display: flex; */
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
   height: 100vh;
   font-family: 'Open Sans', sans-serif;
 }
@@ -133,7 +135,7 @@ h2 {
   padding: 5px;
   border-radius: 1px;
 }
-  
+
 
 form {
   display: flex;
