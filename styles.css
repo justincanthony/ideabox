@@ -32,13 +32,15 @@ form {
   height: 100%;
   width: 100%;
   display: flex;
+  justify-content: space-around;
+
 }
 
 .idea-card {
   border: solid blue 2px;
   background-color: #FFFFFF;
-  width: 25%;
-  height: 26%;
+  width: 218px;
+  height: 253px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
