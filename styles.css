@@ -33,6 +33,7 @@ form {
   width: 100%;
   display: flex;
   justify-content: space-around;
+  /* align-items: center; */
 
 }
 
@@ -51,6 +52,12 @@ form {
   background-color: #1F1F3D;
   display: flex;
   justify-content: space-between;
+}
+
+.star,
+.delete {
+  width: 25px;
+  height: 25px;
 }
 
 .unsaved-star,
