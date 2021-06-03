@@ -1,3 +1,68 @@
+.hidden {
+  display: none;
+}
+
+.ideabox {
+  border: dotted red 3px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  /* align-items: center; */
+
+}
+
+.idea-card {
+  border: solid blue 2px;
+  background-color: #FFFFFF;
+  width: 218px;
+  height: 253px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.idea-card-header {
+  /* border: solid green 2px; */
+  background-color: #1F1F3D;
+  display: flex;
+  justify-content: space-between;
+}
+
+.star,
+.delete {
+  width: 25px;
+  height: 25px;
+}
+
+.unsaved-star,
+.saved-star,
+.img-button,
+.comment-button {
+  background-color: transparent;
+  border-style: none;
+}
+
+.idea-card-body {
+  /* border: solid yellow 3px; */
+  color: #1F1F3D;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  margin-right: 3%;
+}
+
+.idea-card-footer {
+  /* border: solid red 2px; */
+  color: #E9E9F3;
+  background-color: #5356A4;
+  font-weight: 700;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 body {
 /* display: flex; */
   height: 100vh;
@@ -139,8 +204,4 @@ form {
 .search-field {
   width: 80%;
   height: 70%;
-}
-
-.idea-box {
-  border: solid green 1px
 }
