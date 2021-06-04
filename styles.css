@@ -1,12 +1,14 @@
 body {
   display: flex;
-  justify-content: center;
   flex-direction: row;
   height: 100vh;
   font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 main {
+  flex: 1;
   display:flex;
   justify-content: center;
   flex-direction: column;
@@ -23,10 +25,9 @@ h1 {
 h2 {
   background:#1F1F3D;
   color:#BFBFDD;
-  font-family: Open sans-serif, bold;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: .5em;
+  font-size: .65em;
   margin: 10px;
 }
 
@@ -35,7 +36,7 @@ aside {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  width: 125px;
+  width: 200px;
 }
 
 .create-idea-form {
@@ -44,13 +45,12 @@ aside {
   align-items: center;
   justify-content: space-around;
   background-color: #A9AAD2;
-  border: solid red 2px;
+  /* border: solid red 2px; */
   height: 310px;
-  width:700px;
 }
 
 .ideabox {
-  border: dotted red 3px;
+  /* border: dotted red 3px; */
   height: 100%;
   width: 100%;
   display: flex;
@@ -115,7 +115,7 @@ aside {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  width: 125px;
+  width: 100%;
   box-sizing: border-box;
   border-bottom: solid #353567 2px;
 }
@@ -123,10 +123,12 @@ aside {
 .sidebar-subtitle {
   background:#1F1F3D;
   display: flex;
+  justify-content:space-between;
   align-items: flex-start;
   flex-direction: column;
   border-bottom: solid #353567 2px;
-  width: 125px;
+  width: 100%;
+  padding-bottom: 12px;
   box-sizing: border-box;
 }
 
@@ -144,45 +146,49 @@ aside {
   margin: 10px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: .5em;
-  padding: 5px;
+  font-size: 1em;
+  padding: 8px;
   border-radius: 1px;
+  width: 88%;
 }
 
 .title-box {
   font-size: 8pt;
-  border: solid blue 2px;
   height: 50px;
-  width: 350px
+  width: 350px;
+  font-weight: 700;
 }
 
 .form-title {
   border-radius: 2px;
+  box-sizing: border-box;
   padding: 3px;
-  border: transparent;
-  width: 345px;
-  height: 55%
+  border: 2px solid #6265AC;
+  width: 100%;
+  height: 55%;
 }
 
 .form-body {
   border-radius: 2px;
   padding: 3px;
-  border: transparent;
-  width: 345px;
-  height: 65px
+  border: 2px solid #6265AC;
+  width:  100%;
+  height: 65px;
+  box-sizing: border-box;
 }
 
 .body-box {
   font-size: 8pt;
-  border: solid green 2px;
+  box-sizing: border-box;
   height: 85px;
   width: 350px;
+  font-weight: 700;
 }
 
 .btn-box {
-  border: solid yellow 2px;
   height: 50px;
   width: 350px;
+  box-sizing: border-box;
 }
 
 .save-btn {
@@ -192,21 +198,26 @@ aside {
   background-color: #353567;
   width: 100%;
   height: 80%;
+  border-style: none;
 }
 
 .search-box {
-  border: solid green 1px;
-  height: 50px;
-  width: 350px;
+  width: 345px;
+  display: flex;
+  justify-content:center;
+  border: 2px solid #353567;
+  border-radius: 2px;
 }
 
 .search-icon {
   background-color: #353567;
+  padding: 8px;
 }
 
 .search-field {
-  width: 80%;
-  height: 70%;
+  border-radius: 0;
+  border-style: none;
+  flex: 1;
 }
 
 .hidden {
