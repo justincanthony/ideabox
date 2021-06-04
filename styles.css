@@ -75,6 +75,7 @@ aside {
   justify-content: space-between;
 }
 
+.search-icon,
 .star,
 .delete {
   width: 25px;
