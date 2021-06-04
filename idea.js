@@ -1,4 +1,4 @@
-class Idea = {
+class Idea {
   constructor(title,body) {
     this.id = Date.now();
     this.title = title;
@@ -16,6 +16,6 @@ deleteFromStorage() {
 }
 
 updateIdea() {
-  
+
 }
-}
+};
