@@ -149,7 +149,7 @@ aside {
   font-size: 1em;
   padding: 8px;
   border-radius: 1px;
-  width: 88%
+  width: 88%;
 }
 
 .title-box {
@@ -161,22 +161,25 @@ aside {
 
 .form-title {
   border-radius: 2px;
+  box-sizing: border-box;
   padding: 3px;
   border: 2px solid #6265AC;
-  width: 345px;
-  height: 55%
+  width: 100%;
+  height: 55%;
 }
 
 .form-body {
   border-radius: 2px;
   padding: 3px;
   border: 2px solid #6265AC;
-  width: 345px;
-  height: 65px
+  width:  100%;
+  height: 65px;
+  box-sizing: border-box;
 }
 
 .body-box {
   font-size: 8pt;
+  box-sizing: border-box;
   height: 85px;
   width: 350px;
   font-weight: 700;
@@ -185,6 +188,7 @@ aside {
 .btn-box {
   height: 50px;
   width: 350px;
+  box-sizing: border-box;
 }
 
 .save-btn {
@@ -198,7 +202,7 @@ aside {
 }
 
 .search-box {
-  width: 350px;
+  width: 345px;
   display: flex;
   justify-content:center;
   border: 2px solid #353567;
