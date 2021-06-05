@@ -46,6 +46,7 @@ function clearFields() {
 // render to
 function renderIdeaCard() {
   for (var i = 0; i < savedIdeas.length; i++)
+  // need to fix the loop, renders entire array on every new save click
   renderedIdeas.innerHTML += `<article class="idea-card">
     <div class="idea-card-header">
       <button class="unsaved-star">
