@@ -1,3 +1,5 @@
+
+
 //👇 querySelectors👇
 var saveButton = document.querySelector('.save-btn');
 var displayStarredButton = document.querySelector('.show-starred-button');
@@ -8,7 +10,6 @@ var ideaBody = document.querySelector('.form-body'); // body text input
 var searchText = document.querySelector('.search-field');
 var renderedIdeas = document.querySelector('.ideabox');
 var savedIdeas = [];
-console.log(renderedIdeas);
 
 //👇 eventListeners👇
 //
@@ -22,7 +23,15 @@ renderedIdeas.addEventListener('click', function(e) {
     parent.parentNode.parentNode.remove();
     console.log(parent.parentNode.parentNode);
   }
+  if(e.target.className === 'empty-star'){
+    // change this.star from false to true
+    star = true;
+console.log(savedIdeas[0]);
+console.log(event.target);
+    // toggle/hide between hidden/unhidden
+  }
 })
+
 
 
 //👇 eventHandlers👇
@@ -35,7 +44,7 @@ function invokeIdeaClass(event) {
     saveButton.disabled = false;
     var newIdeaObject = new Idea(ideaTitle.value, ideaBody.value);
     savedIdeas.push(newIdeaObject);
-    renderIdeaCard();
+    renderIdeaCard(newIdeaObject);
     // changeButton();
     // clearFields();
   }
@@ -58,14 +67,16 @@ function clearFields() {
 // function showStarred() {
 // }
 // render to
-function renderIdeaCard() {
+function renderIdeaCard(newIdeaObject) {
+  var objectId = newIdeaObject.id;
+  console.log(objectId);
   // for (var i = 0; i < savedIdeas.length; i++)
   // need to fix the loop, renders entire array on every new save click
   //somehow point to this.id as to not recreate every instance in array
-  renderedIdeas.innerHTML += `<article class="idea-card">
+  renderedIdeas.innerHTML += `<article class="idea-card" id="${objectId}">
     <div class="idea-card-header">
       <button class="unsaved-star">
-        <img class="star" src="./assets/icons/star.svg" alt="empty star"/>
+        <img class="empty-star" src="./assets/icons/star.svg" alt="empty star"/>
         <img class= "star hidden" src="./assets/icons/star-active.svg" alt="star"/>
       </button>
       <button class="img-button">
