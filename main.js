@@ -23,6 +23,7 @@ function invokeIdeaClass(event) {
   event.preventDefault();
   if (ideaBody.value === "" || ideaTitle.value === "") {
     saveButton.disabled = true;
+    //saveButton.classList.add(newCSSrule);
   } else {
     saveButton.disabled = false;
     var newIdeaObject = new Idea(ideaTitle.value, ideaBody.value);
@@ -45,8 +46,9 @@ function clearFields() {
 // }
 // render to
 function renderIdeaCard() {
-  for (var i = 0; i < savedIdeas.length; i++)
+  // for (var i = 0; i < savedIdeas.length; i++)
   // need to fix the loop, renders entire array on every new save click
+  //somehow point to this.id as to not recreate every instance in array
   renderedIdeas.innerHTML += `<article class="idea-card">
     <div class="idea-card-header">
       <button class="unsaved-star">
@@ -58,8 +60,8 @@ function renderIdeaCard() {
       </button>
     </div>
     <div class="idea-card-body">
-      <h3>${savedIdeas[i].title}</h3>
-      <p>${savedIdeas[i].body}<p>
+      <h3>${ideaTitle.value}</h3>
+      <p>${ideaBody.value}<p>
     </div>
     <div class="idea-card-footer">
       <button class ="comment-button">
