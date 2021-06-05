@@ -21,17 +21,31 @@ saveButton.addEventListener('click', invokeIdeaClass);
 //Save card + make new instance of Idea
 function invokeIdeaClass(event) {
   event.preventDefault();
-  var newIdeaObject = new Idea(ideaTitle.value, ideaBody.value);
-  savedIdeas.push(newIdeaObject);
-  // if statement for title and body to be filled out
-  // console.log(newIdeaObject);
-  renderIdeaCard()
+  if (ideaBody.value === "" || ideaTitle.value === "") {
+    saveButton.disabled = true;
+  } else {
+    saveButton.disabled = false;
+    var newIdeaObject = new Idea(ideaTitle.value, ideaBody.value);
+    savedIdeas.push(newIdeaObject);
+    renderIdeaCard();
+    clearFields();
+  }
 };
+
+function clearFields() {
+  ideaTitle.value = "";
+  ideaBody.value = "";
+}
+
+// disableButton() {
+//saveButton.disabled = true;
+
 
 // function showStarred() {
 // }
 // render to
 function renderIdeaCard() {
+  for (var i = 0; i < savedIdeas.length; i++)
   renderedIdeas.innerHTML += `<article class="idea-card">
     <div class="idea-card-header">
       <button class="unsaved-star">
@@ -43,8 +57,8 @@ function renderIdeaCard() {
       </button>
     </div>
     <div class="idea-card-body">
-      <h3>${ideaTitle.value}</h3>
-      <p>${ideaBody.value}<p>
+      <h3>${savedIdeas[i].title}</h3>
+      <p>${savedIdeas[i].body}<p>
     </div>
     <div class="idea-card-footer">
       <button class ="comment-button">
