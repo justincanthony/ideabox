@@ -2,7 +2,7 @@
 var saveButton = document.querySelector('.save-btn');
 var displayStarredButton = document.querySelector('.show-starred-button');
 var addCommentButton = document.querySelector('.comment-button');
-// var deleteIdeaButton = document.querySelector('.')
+var deleteIdeaButton = document.querySelector('.img-button')
 var ideaTitle = document.querySelector('.form-title'); // title text input
 var ideaBody = document.querySelector('.form-body'); // body text input
 var searchText = document.querySelector('.search-field');
@@ -15,6 +15,14 @@ console.log(renderedIdeas);
 saveButton.addEventListener('click', invokeIdeaClass);
 // displayStarredButton.addEventListener('click', showStarred)
 // addCommentButton.addEventListener('click', appendComment)
+
+renderedIdeas.addEventListener('click', function(e) {
+  if(e.target.className === 'delete'){
+    var parent = e.target.parentElement;
+    parent.parentNode.parentNode.remove();
+    console.log(parent.parentNode.parentNode);
+  }
+})
 
 
 //👇 eventHandlers👇
