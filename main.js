@@ -23,15 +23,20 @@ function invokeIdeaClass(event) {
   event.preventDefault();
   if (ideaBody.value === "" || ideaTitle.value === "") {
     saveButton.disabled = true;
-    //saveButton.classList.add(newCSSrule);
   } else {
     saveButton.disabled = false;
     var newIdeaObject = new Idea(ideaTitle.value, ideaBody.value);
     savedIdeas.push(newIdeaObject);
     renderIdeaCard();
-    clearFields();
+    // changeButton();
+    // clearFields();
   }
 };
+
+function changeButton() {
+  saveButton.classList.remove('disable-button')
+  saveButton.classList.add('save-btn');
+}
 
 function clearFields() {
   ideaTitle.value = "";
