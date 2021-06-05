@@ -65,8 +65,8 @@ function renderIdeaCard() {
   renderedIdeas.innerHTML += `<article class="idea-card">
     <div class="idea-card-header">
       <button class="unsaved-star">
-        <img class="star hidden" src="./assets/icons/star.svg" alt="empty star"/>
-        <img class= "star" src="./assets/icons/star-active.svg" alt="star"/>
+        <img class="star" src="./assets/icons/star.svg" alt="empty star"/>
+        <img class= "star hidden" src="./assets/icons/star-active.svg" alt="star"/>
       </button>
       <button class="img-button">
         <img class="delete" src="./assets/icons/delete.svg"/>
