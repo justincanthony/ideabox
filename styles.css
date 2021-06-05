@@ -81,13 +81,14 @@ aside {
 
 .search-icon,
 .star,
-.delete {
+.delete,
+.empty-star {
   width: 25px;
   height: 25px;
 }
 
 .unsaved-star,
-.saved-star,
+/* .saved-star, */
 .img-button,
 .comment-button {
   background-color: transparent;
