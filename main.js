@@ -1,5 +1,3 @@
-
-
 //👇 querySelectors👇
 var saveButton = document.querySelector('.save-btn');
 var displayStarredButton = document.querySelector('.show-starred-button');
@@ -12,31 +10,26 @@ var renderedIdeas = document.querySelector('.ideabox');
 var savedIdeas = [];
 
 //👇 eventListeners👇
-//
-saveButton.addEventListener('click', invokeIdeaClass);
-// displayStarredButton.addEventListener('click', showStarred)
-// addCommentButton.addEventListener('click', appendComment)
-
+saveButton.addEventListener('click', istantiateIdeaClass);
 renderedIdeas.addEventListener('click', function(e) {
   if(e.target.className === 'delete'){
     var parent = e.target.parentElement;
     parent.parentNode.parentNode.remove();
     console.log(parent.parentNode.parentNode);
   }
-  if(e.target.className === 'empty-star'){
-    // change this.star from false to true
-    star = true;
-console.log(savedIdeas[0]);
-console.log(event.target);
-    // toggle/hide between hidden/unhidden
+  if(e.target.className === "empty-star") {
+    for(var i = 0; i < savedIdeas.length; i++) {
+      if(e.target.id === savedIdeas[i].id) {
+        e.target.star = true;
+      }
+    }
   }
 })
 
 
-
 //👇 eventHandlers👇
 //Save card + make new instance of Idea
-function invokeIdeaClass(event) {
+function instantiateIdeaClass(event) {
   event.preventDefault();
   if (ideaBody.value === "" || ideaTitle.value === "") {
     saveButton.disabled = true;
@@ -50,33 +43,12 @@ function invokeIdeaClass(event) {
   }
 };
 
-function changeButton() {
-  saveButton.classList.remove('disable-button')
-  saveButton.classList.add('save-btn');
-}
-
-function clearFields() {
-  ideaTitle.value = "";
-  ideaBody.value = "";
-}
-
-// disableButton() {
-//saveButton.disabled = true;
-
-
-// function showStarred() {
-// }
-// render to
 function renderIdeaCard(newIdeaObject) {
   var objectId = newIdeaObject.id;
-  console.log(objectId);
-  // for (var i = 0; i < savedIdeas.length; i++)
-  // need to fix the loop, renders entire array on every new save click
-  //somehow point to this.id as to not recreate every instance in array
-  renderedIdeas.innerHTML += `<article class="idea-card" id="${objectId}">
+  renderedIdeas.innerHTML += `<article class="idea-card">
     <div class="idea-card-header">
       <button class="unsaved-star">
-        <img class="empty-star" src="./assets/icons/star.svg" alt="empty star"/>
+        <img class="empty-star" id="${objectId}" src="./assets/icons/star.svg" alt="empty star"/>
         <img class= "star hidden" src="./assets/icons/star-active.svg" alt="star"/>
       </button>
       <button class="img-button">
@@ -94,4 +66,14 @@ function renderIdeaCard(newIdeaObject) {
       <label>Comment</label>
     </div>
   </article>`
-}
+};
+
+function changeButton() {
+  saveButton.classList.remove('disable-button')
+  saveButton.classList.add('save-btn');
+};
+
+function clearFields() {
+  ideaTitle.value = "";
+  ideaBody.value = "";
+};
