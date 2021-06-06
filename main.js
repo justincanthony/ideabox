@@ -10,7 +10,7 @@ var renderedIdeas = document.querySelector('.ideabox');
 var savedIdeas = [];
 
 //👇 eventListeners👇
-saveButton.addEventListener('click', istantiateIdeaClass);
+saveButton.addEventListener('click', instantiateIdeaClass);
 renderedIdeas.addEventListener('click', function(e) {
   if(e.target.className === 'delete'){
     var parent = e.target.parentElement;
@@ -18,14 +18,33 @@ renderedIdeas.addEventListener('click', function(e) {
     console.log(parent.parentNode.parentNode);
   }
   if(e.target.className === "empty-star") {
+    //new variable for article id
+    var ideaArticle = e.target.parentElement.parentNode.parentNode;
+
+    console.log("works");
+    // idea article is equal to button
     for(var i = 0; i < savedIdeas.length; i++) {
-      if(e.target.id === savedIdeas[i].id) {
-        e.target.star = true;
+      console.log("still works");
+      console.log(ideaArticle.id);
+      console.log(savedIdeas[i].id);
+      //if article id matches id in savedIdeas
+      if(Number(ideaArticle.id) === savedIdeas[i].id) {
+        console.log("still works again")
+        //grab idea instance and update star property
+        console.log(savedIdeas[i].star);
+        savedIdeas[i].star = true;
+        // value of starProperty === false
+        console.log("working still!")
+        console.log(savedIdeas[i].star)
+        // updating starValue to true
+        console.log(ideaArticle.parentNode.parentNode);
+        console.log("final works");
+
       }
     }
   }
+  console.log(savedIdeas[0]);
 })
-
 
 //👇 eventHandlers👇
 //Save card + make new instance of Idea
@@ -45,10 +64,10 @@ function instantiateIdeaClass(event) {
 
 function renderIdeaCard(newIdeaObject) {
   var objectId = newIdeaObject.id;
-  renderedIdeas.innerHTML += `<article class="idea-card">
+  renderedIdeas.innerHTML += `<article class="idea-card" id="${objectId}">
     <div class="idea-card-header">
       <button class="unsaved-star">
-        <img class="empty-star" id="${objectId}" src="./assets/icons/star.svg" alt="empty star"/>
+        <img class="empty-star" src="./assets/icons/star.svg" alt="empty star"/>
         <img class= "star hidden" src="./assets/icons/star-active.svg" alt="star"/>
       </button>
       <button class="img-button">
