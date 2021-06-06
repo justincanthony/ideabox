@@ -31,13 +31,14 @@ renderedIdeas.addEventListener('click', function(e) {
       if(Number(ideaArticle.id) === savedIdeas[i].id) {
         console.log("still works again")
         //grab idea instance and update star property
-        console.log(savedIdeas[i].star);
         savedIdeas[i].star = true;
+        // element we are updating.classList.add("hidden")
+        e.target.classList.add("hidden")
+        e.target.nextElementSibling.classList.remove("hidden")
+        //remove sibling of target
         // value of starProperty === false
         console.log("working still!")
-        console.log(savedIdeas[i].star)
         // updating starValue to true
-        console.log(ideaArticle.parentNode.parentNode);
         console.log("final works");
 
       }
