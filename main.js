@@ -93,6 +93,7 @@ function favoriteIdea(e) {
      savedIdeas[i].star = true;
      favoritedStarImage.classList.remove('hidden');
      emptyStarImage.classList.add('hidden');
+     savedIdeas[i].updateIdea(savedIdeas[i].id);
     }
   }
 };
