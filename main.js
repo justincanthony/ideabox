@@ -117,8 +117,11 @@ function showFavorites() {
   for (var i = 0; i < savedIdeas.length; i++) {
     if (savedIdeas[i].star === true) {
       favoritedIdeas.push(savedIdeas[i]);
-      console.log(favoritedIdeas);
-      // for (var i = 0; i <)
+      for (var i = 0; i < favoritedIdeas.length; i++) {
+        renderedIdeas.innerHTML = "";
+        renderIdeaCard(favoritedIdeas[i]);
+        console.log(renderIdeaCard(favoritedIdeas[i]));
+      }
 
       // notFavorited.classList.add('hidden');
       // displayStarredButton.innerText = "Show All Ideas";
