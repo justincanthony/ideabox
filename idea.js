@@ -5,14 +5,15 @@ class Idea {
     this.body = body;
     this.comment = [];
     this.star = false;
-  }
+    }
 
-saveToStorage() {
 
+  saveToStorage() {
+    localStorage.setItem(this.id, JSON.stringify(this));
 }
 
-deleteFromStorage() {
-
+deleteFromStorage(id) {
+     localStorage.removeItem(id);
 }
 
 updateIdea() {
