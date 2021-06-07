@@ -114,7 +114,13 @@ function removeFavorite(e) {
 
 function showFavorites() {
   for (var i = 0; i < savedIdeas.length; i++) {
-    
+    // console.log(savedIdeas[i]);
+    if (savedIdeas[i].star === true) {
+      var notFavorited = savedIdeas[i]
+      console.log(notFavorited);
+      // notFavorited.classList.add('hidden');
+      // displayStarredButton.innerText = "Show All Ideas";
+    }
   }
 }
 
@@ -127,7 +133,7 @@ function showFavorites() {
 // On button click,
   // Need to query select button (.show-starred-btn)
   // Need event listener for button (click)
->// Access savedIdeas; Iterate through
+// Access savedIdeas; Iterate through
   // For loop
 // Look for this.star=true
   // If statement (conditional)
