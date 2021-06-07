@@ -1,6 +1,6 @@
 //👇 querySelectors👇
 var saveButton = document.querySelector('.save-btn');
-var displayStarredButton = document.querySelector('.show-starred-button');
+var displayStarredButton = document.querySelector('.show-starred-btn');
 var addCommentButton = document.querySelector('.comment-button');
 var deleteIdeaButton = document.querySelector('.img-button')
 var ideaTitle = document.querySelector('.form-title');
@@ -11,6 +11,8 @@ var renderedIdeas = document.querySelector('.ideabox');
 var savedIdeas = [];
 //👇 eventListeners👇
 saveButton.addEventListener('click', instantiateIdeaClass);
+
+displayStarredButton.addEventListener('click', showFavorites);
 
 renderedIdeas.addEventListener('click', function(e) {
   if(e.target.className === 'delete') {
@@ -109,6 +111,33 @@ function removeFavorite(e) {
     }
   }
 };
+
+function showFavorites() {
+  for (var i = 0; i < savedIdeas.length; i++) {
+    
+  }
+}
+
+// Pseudocode Iteration 4:
+//
+// Goal: On show starred button click, show all of the favorited cards (this.star=true;)
+// Input: Button, savedIdeas
+// Output: Show only favorited cards in display section
+// Steps:
+// On button click,
+  // Need to query select button (.show-starred-btn)
+  // Need event listener for button (click)
+>// Access savedIdeas; Iterate through
+  // For loop
+// Look for this.star=true
+  // If statement (conditional)
+// If true, display those, hide non-favorited
+  // add/remove classes?
+  // Just add .hidden!
+// Toggling remove hidden
+// Button text changes (show all ideas)
+  // 2 buttons or One and just change innerText?
+
 
 // function saveToStorage(newIdeaObject) {
 //   var storageId = articleIdea.id;
