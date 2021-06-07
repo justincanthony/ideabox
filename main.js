@@ -9,6 +9,7 @@ var searchText = document.querySelector('.search-field');
 var renderedIdeas = document.querySelector('.ideabox');
 
 var savedIdeas = [];
+var favoritedIdeas = [];
 //👇 eventListeners👇
 saveButton.addEventListener('click', instantiateIdeaClass);
 
@@ -114,10 +115,11 @@ function removeFavorite(e) {
 
 function showFavorites() {
   for (var i = 0; i < savedIdeas.length; i++) {
-    // console.log(savedIdeas[i]);
     if (savedIdeas[i].star === true) {
-      var notFavorited = savedIdeas[i]
-      console.log(notFavorited);
+      favoritedIdeas.push(savedIdeas[i]);
+      console.log(favoritedIdeas);
+      // for (var i = 0; i <)
+
       // notFavorited.classList.add('hidden');
       // displayStarredButton.innerText = "Show All Ideas";
     }
