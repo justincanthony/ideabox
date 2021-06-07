@@ -8,7 +8,7 @@ class Idea {
     }
 
 
-  saveToStorage() {
+saveToStorage() {
     localStorage.setItem(this.id, JSON.stringify(this));
 }
 
@@ -17,6 +17,6 @@ deleteFromStorage(id) {
 }
 
 updateIdea() {
-
+  localStorage.setItem(this.id, JSON.stringify(this));
 }
 };
