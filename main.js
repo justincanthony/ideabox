@@ -9,7 +9,6 @@ var searchText = document.querySelector('.search-field');
 var renderedIdeas = document.querySelector('.ideabox');
 
 var savedIdeas = [];
-console.log(savedIdeas);
 //👇 eventListeners👇
 saveButton.addEventListener('click', instantiateIdeaClass);
 
@@ -37,7 +36,6 @@ function instantiateIdeaClass(event) {
   } else {
     saveButton.disabled = false;
     var newIdeaObject = new Idea(ideaTitle.value, ideaBody.value);
-    console.log(newIdeaObject);
     savedIdeas.push(newIdeaObject);
     renderIdeaCard(newIdeaObject);
     newIdeaObject.saveToStorage();
