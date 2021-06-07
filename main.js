@@ -48,8 +48,8 @@ function instantiateIdeaClass(event) {
 };
 
 function renderIdeaCard(newIdeaObject) {
-  var objectId = newIdeaObject.id;
-  renderedIdeas.innerHTML += `<article class="idea-card" id="${objectId}">
+  //need to make img classes dynmaic based on newIdeaObject.star (t/f)
+  renderedIdeas.innerHTML += `<article class="idea-card" id="${newIdeaObject.id}">
     <div class="idea-card-header">
       <button class="unsaved-star">
         <img class="empty-star" src="./assets/icons/star.svg" alt="empty star"/>
@@ -60,8 +60,33 @@ function renderIdeaCard(newIdeaObject) {
       </button>
     </div>
     <div class="idea-card-body">
-      <h3>${ideaTitle.value}</h3>
-      <p>${ideaBody.value}<p>
+      <h3>${newIdeaObject.title}</h3>
+      <p>${newIdeaObject.body}<p>
+    </div>
+    <div class="idea-card-footer">
+      <button class ="comment-button">
+        <img class="comment-image" src="./assets/icons/comment.svg" alt="comment image"/>
+      </button>
+      <label>Comment</label>
+    </div>
+  </article>`
+}
+
+function renderFavorites(newIdeaObject) {
+  //need to make img classes dynmaic based on newIdeaObject.star (t/f)
+  renderedIdeas.innerHTML += `<article class="idea-card" id="${newIdeaObject.id}">
+    <div class="idea-card-header">
+      <button class="unsaved-star">
+        <img class="empty-star hidden" src="./assets/icons/star.svg" alt="empty star"/>
+        <img class= "star" src="./assets/icons/star-active.svg" alt="star"/>
+      </button>
+      <button class="img-button">
+        <img class="delete" src="./assets/icons/delete.svg"/>
+      </button>
+    </div>
+    <div class="idea-card-body">
+      <h3>${newIdeaObject.title}</h3>
+      <p>${newIdeaObject.body}<p>
     </div>
     <div class="idea-card-footer">
       <button class ="comment-button">
@@ -114,14 +139,12 @@ function removeFavorite(e) {
 };
 
 function showFavorites() {
+  renderedIdeas.innerHTML = "";
   for (var i = 0; i < savedIdeas.length; i++) {
     if (savedIdeas[i].star === true) {
       favoritedIdeas.push(savedIdeas[i]);
-      for (var i = 0; i < favoritedIdeas.length; i++) {
-        renderedIdeas.innerHTML = "";
-        renderIdeaCard(favoritedIdeas[i]);
-        console.log(renderIdeaCard(favoritedIdeas[i]));
-      }
+      renderFavorites(favoritedIdeas[i]);
+
 
       // notFavorited.classList.add('hidden');
       // displayStarredButton.innerText = "Show All Ideas";
