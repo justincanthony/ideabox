@@ -46,8 +46,7 @@ function instantiateIdeaClass(event) {
     savedIdeas.push(newIdeaObject);
     renderIdeaCard(newIdeaObject);
     newIdeaObject.saveToStorage();
-    // changeButton();
-    // clearFields();
+    clearFields();
   }
 };
 
@@ -185,7 +184,7 @@ function showAll() {
 //   saveButton.classList.add('save-btn');
 // }
 //
-// function clearFields() {
-//   ideaTitle.value = "";
-//   ideaBody.value = "";
-// }
+function clearFields() {
+  ideaTitle.value = "";
+  ideaBody.value = "";
+};
