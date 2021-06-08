@@ -16,7 +16,7 @@ saveButton.addEventListener('click', instantiateIdeaClass);
 
 displayStarredButton.addEventListener('click', showFavorites);
 
-// displayAllIdeasButton.addEventListener('click', showAll);
+displayAllIdeasButton.addEventListener('click', showAll);
 
 renderedIdeas.addEventListener('click', function(e) {
   console.log(e.target.className);
@@ -130,6 +130,13 @@ function showFavorites() {
       // displayStarredButton.innerText = "Show All Ideas";
     }
   }
+}
+
+function showAll() {
+  console.log(savedIdeas);
+  renderIdeaCard(savedIdeas)
+  displayAllIdeasButton.classList.add("hidden");
+  displayStarredButton.classList.remove("hidden");
 }
 
 // Pseudocode Iteration 4:
