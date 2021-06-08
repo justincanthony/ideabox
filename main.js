@@ -1,5 +1,5 @@
 //👇 querySelectors👇
-var saveButton = document.querySelector('.save-btn');
+var saveButton = document.querySelector('#saveBtn');
 var displayStarredButton = document.getElementById('showFavoritesButton');
 var displayAllIdeasButton = document.getElementById('showAllButton');
 var addCommentButton = document.querySelector('.comment-button');
@@ -36,12 +36,23 @@ renderedIdeas.addEventListener('click', function(e) {
 
 //👇 eventHandlers👇
 //Save card + make new instance of Idea
+function changeSaveButton() {
+  if (ideaBody.value !== "" && ideaTitle.value !== "") {
+    saveButton.classList.remove('disabled-save-btn');
+    saveButton.classList.add('save-btn');
+  }
+  if (ideaBody.value === "" || ideaTitle.value === "") {
+    saveButton.classList.remove('save-btn');
+    saveButton.classList.add('disabled-save-btn');
+  }
+}
+
+
+// continue event input... 
+
 function instantiateIdeaClass(event) {
   event.preventDefault();
-  if (ideaBody.value === "" || ideaTitle.value === "") {
-    saveButton.disabled = true;
-  } else {
-    saveButton.disabled = false;
+  if (ideaBody.value !== "" && ideaTitle.value !== "") {
     var newIdeaObject = new Idea(ideaTitle.value, ideaBody.value);
     savedIdeas.push(newIdeaObject);
     renderIdeaCard(newIdeaObject);
