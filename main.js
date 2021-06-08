@@ -1,6 +1,7 @@
 //👇 querySelectors👇
 var saveButton = document.querySelector('.save-btn');
-var displayStarredButton = document.querySelector('.show-starred-button');
+var displayStarredButton = document.getElementById('showFavoritesButton');
+var displayAllIdeasButton = document.getElementById('showAllButton');
 var addCommentButton = document.querySelector('.comment-button');
 var deleteIdeaButton = document.querySelector('.img-button')
 var ideaTitle = document.querySelector('.form-title');
@@ -9,8 +10,13 @@ var searchText = document.querySelector('.search-field');
 var renderedIdeas = document.querySelector('.ideabox');
 
 var savedIdeas = [];
+var favoritedIdeas = [];
 //👇 eventListeners👇
 saveButton.addEventListener('click', instantiateIdeaClass);
+
+displayStarredButton.addEventListener('click', showFavorites);
+
+// displayAllIdeasButton.addEventListener('click', showAll);
 
 renderedIdeas.addEventListener('click', function(e) {
   if(e.target.className === 'delete') {
@@ -45,8 +51,8 @@ function instantiateIdeaClass(event) {
 };
 
 function renderIdeaCard(newIdeaObject) {
-  var objectId = newIdeaObject.id;
-  renderedIdeas.innerHTML += `<article class="idea-card" id="${objectId}">
+  //need to make img classes dynmaic based on newIdeaObject.star (t/f)
+  renderedIdeas.innerHTML += `<article class="idea-card" id="${newIdeaObject.id}">
     <div class="idea-card-header">
       <button class="unsaved-star">
         <img class="empty-star" src="./assets/icons/star.svg" alt="empty star"/>
@@ -57,8 +63,33 @@ function renderIdeaCard(newIdeaObject) {
       </button>
     </div>
     <div class="idea-card-body">
-      <h3>${ideaTitle.value}</h3>
-      <p>${ideaBody.value}<p>
+      <h3>${newIdeaObject.title}</h3>
+      <p>${newIdeaObject.body}<p>
+    </div>
+    <div class="idea-card-footer">
+      <button class ="comment-button">
+        <img class="comment-image" src="./assets/icons/comment.svg" alt="comment image"/>
+      </button>
+      <label>Comment</label>
+    </div>
+  </article>`
+}
+
+function renderFavorites(newIdeaObject) {
+  //need to make img classes dynmaic based on newIdeaObject.star (t/f)
+  renderedIdeas.innerHTML += `<article class="idea-card" id="${newIdeaObject.id}">
+    <div class="idea-card-header">
+      <button class="unsaved-star">
+        <img class="empty-star hidden" src="./assets/icons/star.svg" alt="empty star"/>
+        <img class= "star" src="./assets/icons/star-active.svg" alt="star"/>
+      </button>
+      <button class="img-button">
+        <img class="delete" src="./assets/icons/delete.svg"/>
+      </button>
+    </div>
+    <div class="idea-card-body">
+      <h3>${newIdeaObject.title}</h3>
+      <p>${newIdeaObject.body}<p>
     </div>
     <div class="idea-card-footer">
       <button class ="comment-button">
@@ -109,6 +140,42 @@ function removeFavorite(e) {
     }
   }
 };
+
+function showFavorites() {
+  renderedIdeas.innerHTML = "";
+  for (var i = 0; i < savedIdeas.length; i++) {
+    if (savedIdeas[i].star === true) {
+      favoritedIdeas.push(savedIdeas[i]);
+      renderFavorites(favoritedIdeas[i]);
+      displayAllIdeasButton.classList.remove("hidden");
+      displayStarredButton.classList.add("hidden");
+
+      // notFavorited.classList.add('hidden');
+      // displayStarredButton.innerText = "Show All Ideas";
+    }
+  }
+}
+
+// Pseudocode Iteration 4:
+//
+// Goal: On show starred button click, show all of the favorited cards (this.star=true;)
+// Input: Button, savedIdeas
+// Output: Show only favorited cards in display section
+// Steps:
+// On button click,
+  // Need to query select button (.show-starred-btn)
+  // Need event listener for button (click)
+// Access savedIdeas; Iterate through
+  // For loop
+// Look for this.star=true
+  // If statement (conditional)
+// If true, display those, hide non-favorited
+  // add/remove classes?
+  // Just add .hidden!
+// Toggling remove hidden
+// Button text changes (show all ideas)
+  // 2 buttons or One and just change innerText?
+
 
 // function saveToStorage(newIdeaObject) {
 //   var storageId = articleIdea.id;
