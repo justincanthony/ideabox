@@ -1,6 +1,7 @@
 //👇 querySelectors👇
 var saveButton = document.querySelector('.save-btn');
-var displayStarredButton = document.querySelector('.show-starred-btn');
+var displayStarredButton = document.getElementById('showFavoritesButton');
+var displayAllIdeasButton = document.getElementById('showAllButton');
 var addCommentButton = document.querySelector('.comment-button');
 var deleteIdeaButton = document.querySelector('.img-button')
 var ideaTitle = document.querySelector('.form-title');
@@ -14,6 +15,8 @@ var favoritedIdeas = [];
 saveButton.addEventListener('click', instantiateIdeaClass);
 
 displayStarredButton.addEventListener('click', showFavorites);
+
+// displayAllIdeasButton.addEventListener('click', showAll);
 
 renderedIdeas.addEventListener('click', function(e) {
   if(e.target.className === 'delete') {
@@ -144,7 +147,8 @@ function showFavorites() {
     if (savedIdeas[i].star === true) {
       favoritedIdeas.push(savedIdeas[i]);
       renderFavorites(favoritedIdeas[i]);
-
+      displayAllIdeasButton.classList.remove("hidden");
+      displayStarredButton.classList.add("hidden");
 
       // notFavorited.classList.add('hidden');
       // displayStarredButton.innerText = "Show All Ideas";
