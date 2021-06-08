@@ -16,18 +16,19 @@ saveButton.addEventListener('click', instantiateIdeaClass);
 
 displayStarredButton.addEventListener('click', showFavorites);
 
-// displayAllIdeasButton.addEventListener('click', showAll);
+displayAllIdeasButton.addEventListener('click', showAll);
 
 renderedIdeas.addEventListener('click', function(e) {
+  console.log(e.target.className);
   if(e.target.className === 'delete') {
     deleteIdeaCard(e);
   };
 
-  if(e.target.className === 'empty-star') {
+  if(e.target.className.includes('empty-star')) {
     favoriteIdea(e);
   }
 
-  if(e.target.className === 'star') {
+  if(e.target.className.includes('filled-star')) {
     removeFavorite(e);
 }
 });
@@ -51,37 +52,13 @@ function instantiateIdeaClass(event) {
 };
 
 function renderIdeaCard(newIdeaObject) {
+  console.log(newIdeaObject);
   //need to make img classes dynmaic based on newIdeaObject.star (t/f)
   renderedIdeas.innerHTML += `<article class="idea-card" id="${newIdeaObject.id}">
     <div class="idea-card-header">
       <button class="unsaved-star">
-        <img class="empty-star" src="./assets/icons/star.svg" alt="empty star"/>
-        <img class= "star hidden" src="./assets/icons/star-active.svg" alt="star"/>
-      </button>
-      <button class="img-button">
-        <img class="delete" src="./assets/icons/delete.svg"/>
-      </button>
-    </div>
-    <div class="idea-card-body">
-      <h3>${newIdeaObject.title}</h3>
-      <p>${newIdeaObject.body}<p>
-    </div>
-    <div class="idea-card-footer">
-      <button class ="comment-button">
-        <img class="comment-image" src="./assets/icons/comment.svg" alt="comment image"/>
-      </button>
-      <label>Comment</label>
-    </div>
-  </article>`
-}
-
-function renderFavorites(newIdeaObject) {
-  //need to make img classes dynmaic based on newIdeaObject.star (t/f)
-  renderedIdeas.innerHTML += `<article class="idea-card" id="${newIdeaObject.id}">
-    <div class="idea-card-header">
-      <button class="unsaved-star">
-        <img class="empty-star hidden" src="./assets/icons/star.svg" alt="empty star"/>
-        <img class= "star" src="./assets/icons/star-active.svg" alt="star"/>
+        <img class="empty-star ${newIdeaObject.star ? "hidden" : ""}" src="./assets/icons/star.svg" alt="empty star"/>
+        <img class= "filled-star ${newIdeaObject.star ? "" : "hidden"}" src="./assets/icons/star-active.svg" alt="star"/>
       </button>
       <button class="img-button">
         <img class="delete" src="./assets/icons/delete.svg"/>
@@ -116,7 +93,7 @@ function favoriteIdea(e) {
   var emptyStarImage = e.target;
   var articleIdea = e.target.parentElement.parentNode.parentNode;
   var favoritedStarImage = e.target.nextElementSibling;
-
+  console.log(emptyStarImage, articleIdea, favoritedStarImage)
   for (var i = 0; i < savedIdeas.length; i++) {
    if (Number(articleIdea.id) === savedIdeas[i].id) {
      savedIdeas[i].star = true;
@@ -146,14 +123,24 @@ function showFavorites() {
   for (var i = 0; i < savedIdeas.length; i++) {
     if (savedIdeas[i].star === true) {
       favoritedIdeas.push(savedIdeas[i]);
-      renderFavorites(favoritedIdeas[i]);
-      displayAllIdeasButton.classList.remove("hidden");
+      renderIdeaCard(savedIdeas[i]);
       displayStarredButton.classList.add("hidden");
-
+      displayAllIdeasButton.classList.remove("hidden");
       // notFavorited.classList.add('hidden');
       // displayStarredButton.innerText = "Show All Ideas";
     }
   }
+}
+
+function showAll() {
+  console.log(savedIdeas);
+  renderedIdeas.innerHTML = "";
+  console.log(renderedIdeas.innerHTML);
+  for (var i = 0; i < savedIdeas.length; i++) {
+    renderIdeaCard(savedIdeas[i]);
+  }
+  displayAllIdeasButton.classList.add("hidden");
+  displayStarredButton.classList.remove("hidden");
 }
 
 // Pseudocode Iteration 4:
