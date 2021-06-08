@@ -134,7 +134,11 @@ function showFavorites() {
 
 function showAll() {
   console.log(savedIdeas);
-  renderIdeaCard(savedIdeas)
+  renderedIdeas.innerHTML = "";
+  console.log(renderedIdeas.innerHTML);
+  for (var i = 0; i < savedIdeas.length; i++) {
+    renderIdeaCard(savedIdeas[i]);
+  }
   displayAllIdeasButton.classList.add("hidden");
   displayStarredButton.classList.remove("hidden");
 }
