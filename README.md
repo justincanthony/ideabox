@@ -30,10 +30,9 @@ The purpose of this application is to allow a user to create and store ideas for
 - User can delete idea by selecting the "X" icon on the card
 - User can view favorited cards by selecting the show starred ideas button
 - User can view all cards by selecting show all ideas button
-- User can use the search input to easily locate previously saved cards
-- User can add comments to their idea card to update their ideas
 - User's ideas are stored for future use and updates
 
 ## Future Features
 - ability to search for previously saved ideas
 - ability to add comments to previously saved cards
+- User can use the search input to easily locate previously saved cards
