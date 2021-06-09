@@ -1,5 +1,5 @@
 //👇 querySelectors👇
-var saveButton = document.querySelector('.save-btn');
+var saveButton = document.querySelector('#saveBtn');
 var displayStarredButton = document.getElementById('showFavoritesButton');
 var displayAllIdeasButton = document.getElementById('showAllButton');
 var addCommentButton = document.querySelector('.comment-button');
@@ -11,15 +11,21 @@ var renderedIdeas = document.querySelector('.ideabox');
 
 var savedIdeas = [];
 var favoritedIdeas = [];
+
 //👇 eventListeners👇
+window.addEventListener('load', getFromStorage);
+
 saveButton.addEventListener('click', instantiateIdeaClass);
+
+ideaTitle.addEventListener('keydown', changeSaveButton);
+
+ideaBody.addEventListener('keydown', changeSaveButton);
 
 displayStarredButton.addEventListener('click', showFavorites);
 
 displayAllIdeasButton.addEventListener('click', showAll);
 
 renderedIdeas.addEventListener('click', function(e) {
-  console.log(e.target.className);
   if(e.target.className === 'delete') {
     deleteIdeaCard(e);
   };
@@ -35,56 +41,73 @@ renderedIdeas.addEventListener('click', function(e) {
 
 
 //👇 eventHandlers👇
-//Save card + make new instance of Idea
-function instantiateIdeaClass(event) {
-  event.preventDefault();
+function changeSaveButton() {
+  if (ideaBody.value !== "" && ideaTitle.value !== "") {
+    saveButton.classList.remove('disabled-save-btn');
+    saveButton.classList.add('save-btn');
+  }
   if (ideaBody.value === "" || ideaTitle.value === "") {
-    saveButton.disabled = true;
-  } else {
-    saveButton.disabled = false;
-    var newIdeaObject = new Idea(ideaTitle.value, ideaBody.value);
-    savedIdeas.push(newIdeaObject);
-    renderIdeaCard(newIdeaObject);
-    newIdeaObject.saveToStorage();
-    // changeButton();
-    // clearFields();
+    saveButton.classList.remove('save-btn');
+    saveButton.classList.add('disabled-save-btn');
   }
 };
 
-function renderIdeaCard(newIdeaObject) {
-  console.log(newIdeaObject);
-  //need to make img classes dynmaic based on newIdeaObject.star (t/f)
-  renderedIdeas.innerHTML += `<article class="idea-card" id="${newIdeaObject.id}">
-    <div class="idea-card-header">
-      <button class="unsaved-star">
-        <img class="empty-star ${newIdeaObject.star ? "hidden" : ""}" src="./assets/icons/star.svg" alt="empty star"/>
-        <img class= "filled-star ${newIdeaObject.star ? "" : "hidden"}" src="./assets/icons/star-active.svg" alt="star"/>
-      </button>
-      <button class="img-button">
-        <img class="delete" src="./assets/icons/delete.svg"/>
-      </button>
-    </div>
-    <div class="idea-card-body">
-      <h3>${newIdeaObject.title}</h3>
-      <p>${newIdeaObject.body}<p>
-    </div>
-    <div class="idea-card-footer">
-      <button class ="comment-button">
-        <img class="comment-image" src="./assets/icons/comment.svg" alt="comment image"/>
-      </button>
-      <label>Comment</label>
-    </div>
-  </article>`
-}
+function instantiateIdeaClass(event) {
+  event.preventDefault();
+  if (ideaBody.value !== "" && ideaTitle.value !== "") {
+    var newIdeaObject = new Idea(ideaTitle.value, ideaBody.value);
+    savedIdeas.push(newIdeaObject)
+    newIdeaObject.saveToStorage();
+    renderIdeaCard(newIdeaObject);
+    clearFields();
+  }
+};
+
+function getFromStorage() {
+  var itemsRetrieved = Object.keys(localStorage);
+  for (var i=0; i < itemsRetrieved.length; i++) {
+    var retrievedItem = JSON.parse(localStorage.getItem(itemsRetrieved[i]))
+
+    var favoritedIdeaObject = new Idea(retrievedItem.title, retrievedItem.body, retrievedItem.id, retrievedItem.star);
+    savedIdeas.push(favoritedIdeaObject)
+    renderIdeaCard(favoritedIdeaObject)
+  }
+};
+
+function renderIdeaCard(idea) {
+  renderedIdeas.innerHTML +=
+    `<article class="idea-card" id="${idea.id}">
+      <div class="idea-card-header">
+        <button class="unsaved-star">
+          <img class="empty-star ${idea.star ? "hidden" : ""}" src="./assets/icons/star.svg" alt="empty star"/>
+          <img class= "filled-star ${idea.star ? "" : "hidden"}" src="./assets/icons/star-active.svg" alt="star"/>
+        </button>
+        <button class="img-button">
+          <img class="delete" src="./assets/icons/delete.svg"/>
+        </button>
+      </div>
+      <div class="idea-card-body">
+        <h3>${idea.title}</h3>
+        <p>${idea.body}<p>
+      </div>
+      <div class="idea-card-footer">
+        <button class ="comment-button">
+          <img class="comment-image" src="./assets/icons/comment.svg" alt="comment image"/>
+        </button>
+        <label>Comment</label>
+      </div>
+    </article>`
+};
 
 function deleteIdeaCard(e) {
+  e.preventDefault();
   var parent = e.target.parentElement.parentNode.parentNode;
+
     for (i = 0; i < savedIdeas.length; i++) {
       if (Number(parent.id) === savedIdeas[i].id) {
         savedIdeas[i].deleteFromStorage(savedIdeas[i].id);
         parent.remove();
         savedIdeas.splice(i, 1);
-
       }
     }
 };
@@ -93,13 +116,15 @@ function favoriteIdea(e) {
   var emptyStarImage = e.target;
   var articleIdea = e.target.parentElement.parentNode.parentNode;
   var favoritedStarImage = e.target.nextElementSibling;
-  console.log(emptyStarImage, articleIdea, favoritedStarImage)
+
   for (var i = 0; i < savedIdeas.length; i++) {
-   if (Number(articleIdea.id) === savedIdeas[i].id) {
-     savedIdeas[i].star = true;
-     favoritedStarImage.classList.remove('hidden');
+    var idea = savedIdeas[i];
+   if (Number(articleIdea.id) === idea.id) {
+     favoritedIdeas.push(idea);
+     idea.star = true;
+     favoritedStarImage.classList.remove('hidden')
      emptyStarImage.classList.add('hidden');
-     savedIdeas[i].updateIdea(savedIdeas[i].id);
+     idea.updateIdea();
     }
   }
 };
@@ -110,10 +135,13 @@ function removeFavorite(e) {
   var favoritedStarImage = e.target;
 
   for (var i = 0; i < savedIdeas.length; i++) {
-    if (Number(articleIdea.id) === savedIdeas[i].id && savedIdeas[i].star === true) {
-      savedIdeas[i].star = false;
+    var idea = savedIdeas[i];
+    if (Number(articleIdea.id) === idea.id && idea.star === true) {
+      idea.star = false;
+      favoritedIdeas.splice(i, 1);
       favoritedStarImage.classList.add('hidden');
       emptyStarImage.classList.remove('hidden');
+      idea.updateIdea();
     }
   }
 };
@@ -122,20 +150,16 @@ function showFavorites() {
   renderedIdeas.innerHTML = "";
   for (var i = 0; i < savedIdeas.length; i++) {
     if (savedIdeas[i].star === true) {
-      favoritedIdeas.push(savedIdeas[i]);
       renderIdeaCard(savedIdeas[i]);
       displayStarredButton.classList.add("hidden");
       displayAllIdeasButton.classList.remove("hidden");
-      // notFavorited.classList.add('hidden');
-      // displayStarredButton.innerText = "Show All Ideas";
+      displayStarredButton.innerText = "Show All Ideas";
     }
   }
 }
 
 function showAll() {
-  console.log(savedIdeas);
   renderedIdeas.innerHTML = "";
-  console.log(renderedIdeas.innerHTML);
   for (var i = 0; i < savedIdeas.length; i++) {
     renderIdeaCard(savedIdeas[i]);
   }
@@ -143,49 +167,7 @@ function showAll() {
   displayStarredButton.classList.remove("hidden");
 }
 
-// Pseudocode Iteration 4:
-//
-// Goal: On show starred button click, show all of the favorited cards (this.star=true;)
-// Input: Button, savedIdeas
-// Output: Show only favorited cards in display section
-// Steps:
-// On button click,
-  // Need to query select button (.show-starred-btn)
-  // Need event listener for button (click)
-// Access savedIdeas; Iterate through
-  // For loop
-// Look for this.star=true
-  // If statement (conditional)
-// If true, display those, hide non-favorited
-  // add/remove classes?
-  // Just add .hidden!
-// Toggling remove hidden
-// Button text changes (show all ideas)
-  // 2 buttons or One and just change innerText?
-
-
-// function saveToStorage(newIdeaObject) {
-//   var storageId = articleIdea.id;
-//   console.log(storageId);
-//   var stringifiedIdea = JSON.stringify(newIdeaObject);
-//   localStorage.setItem(storageId, stringifiedIdea)
-// };
-
-
-// 👇 Unfinished Functions👇
-// disableButton() {
-//saveButton.disabled = true;
-//}
-//
-// function showStarred() {
-// }
-//
-// function changeButton() {
-//   saveButton.classList.remove('disable-button')
-//   saveButton.classList.add('save-btn');
-// }
-//
-// function clearFields() {
-//   ideaTitle.value = "";
-//   ideaBody.value = "";
-// }
+function clearFields() {
+  ideaTitle.value = "";
+  ideaBody.value = "";
+};

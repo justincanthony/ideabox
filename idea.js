@@ -1,10 +1,10 @@
 class Idea {
-  constructor(title,body) {
-    this.id = Date.now();
+  constructor(title, body, id, star) {
+    this.id = id || Date.now();
     this.title = title;
     this.body = body;
     this.comment = [];
-    this.star = false;
+    this.star = star || false;
     }
 
 
