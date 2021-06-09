@@ -16,11 +16,16 @@ __Tech Stack__
 ## User Information
 The purpose of this application is to allow a user to create and store ideas for future reference.
 
+![main page image](https://github.com/justincanthony/ideabox/blob/main/assets/images/ideabox-main-page.jpeg)
+
 ## How to Use Application
 - User inputs title of idea into title text box  
 - User inputs details of idea into the body text box  
 - User clicks save button
 - Newly saved card is displayed in the box below
+
+![idea card image](https://github.com/justincanthony/ideabox/blob/main/assets/images/idea-card-image.png)
+
 - User can favorite an idea if desired by selecting the star icon in the idea card
 - User can delete idea by selecting the "X" icon on the card
 - User can view favorited cards by selecting the show starred ideas button
